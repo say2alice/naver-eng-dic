@@ -5,7 +5,6 @@ let ignoreMouseEvent = false;
 
 /* global defaultPrefs */
 browser.storage.local.get('prefs', (rawItem) => {
-  // see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/StorageArea/get
   const item = Array.isArray(rawItem) ? rawItem[0] : rawItem;
   prefs = item.prefs ? item.prefs : defaultPrefs;
 });
@@ -25,7 +24,7 @@ document.addEventListener('mouseup', (e) => {
   if (!isTooltip(e.target)) {
     hideTooltip();
   }
-  if (prefs === null || prefs.wordSelectMode != 0 || ignoreMouseEvent) {
+  if (prefs === null || prefs.wordSelectMode != 1 || ignoreMouseEvent) {
     return;
   }
   let sel = document.getSelection();
@@ -43,7 +42,7 @@ document.addEventListener('mouseup', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-  if (prefs === null || prefs.wordSelectMode != 1) {
+  if (prefs === null || prefs.wordSelectMode != 0) {
     return;
   }
   if (e.ctrlKey != prefs.useCtrl

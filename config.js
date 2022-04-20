@@ -1,6 +1,6 @@
 /* exported defaultPrefs */
 const defaultPrefs = {
-  wordSelectMode: 1,
+  wordSelectMode: 0,
   useCtrl: false,
   useAlt: true,
   useMeta: false

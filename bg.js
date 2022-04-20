@@ -2,8 +2,8 @@ const modeIcons = [
   'icons/icon@64.png'
 ];
 const modeName = [
-  '옛날 방법 (드래그)',
-  '표준 (기능키 + 클릭)'
+  '기능키+클릭',
+  'Mouse Drag'
 ];
 
 function initBrowserAction(wordSelectMode) {
@@ -11,7 +11,7 @@ function initBrowserAction(wordSelectMode) {
     path: modeIcons[wordSelectMode]
   });
   browser.browserAction.setTitle({
-    title: `Naver English Dictionary (Unofficial)\n${modeName[wordSelectMode]}`
+    title: `English Korean Dictionary\n${modeName[wordSelectMode]}`
   });
 }
 
@@ -38,7 +38,7 @@ browser.commands.onCommand.addListener((cmd) => {
       prefs: defaultPrefs
     }).then((results) => {
       const { prefs } = results;
-      prefs['wordSelectMode'] = prefs['wordSelectMode'] == 0 ? 1 : 0;
+      prefs['wordSelectMode'] = prefs['wordSelectMode'] === 0 ? 1 : 0;
       browser.storage.local.set({
         prefs: prefs
       });

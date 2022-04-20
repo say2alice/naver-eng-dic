@@ -7,21 +7,18 @@
 <form>
   <label>단어 선택 방법
   <select name="wordSelectMode">
-    <option value="0">옛날 방법 (드래그)</option>
-    <option value="1">표준 (기능키 + 클릭)</option>
+    <option value="0">기능키+클릭</option>
+    <option value="1">Mouse Drag</option>
   </select>
   </label>
   <fieldset name="modifier-keys">
     <legend>기능키 설정 (표준 모드용)</legend>
-    <label>Ctrl
-    <input type="checkbox" name="useCtrl">
-    </label>
-    <label>Alt
-    <input type="checkbox" name="useAlt">
-    </label>
-    <label>Meta(Cmd)
-    <input type="checkbox" name="useMeta">
-    </label>
+    <input type="checkbox" name="useCtrl" id="useCtrl">
+    <label for="useCtrl">Ctrl</label>
+    <input type="checkbox" name="useAlt" id="useAlt">
+    <label for="useAlt">Alt</label>
+    <input type="checkbox" name="useMeta" id="useMeta">
+    <label for="useMeta">Meta(Cmd)</label>
   </fieldset>
 </form>
 <script type="text/javascript" src="config.js"></script>
