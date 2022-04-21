@@ -1,4 +1,3 @@
-/* exported defaultPrefs */
 const defaultPrefs = {
   wordSelectMode: 0,
   useCtrl: false,

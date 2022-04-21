@@ -14,10 +14,10 @@ const modeName = [
 ];
 
 function initBrowserAction(wordSelectMode) {
-  chrome.browserAction.setIcon({
+  chrome.action.setIcon({
     path: modeIcons[wordSelectMode]
   });
-  chrome.browserAction.setTitle({
+  chrome.action.setTitle({
     title: `English Korean Dictionary\n${modeName[wordSelectMode]}`
   });
 }
@@ -33,9 +33,13 @@ chrome.storage.onChanged.addListener((changes, area) => {
   initBrowserAction(wordSelectMode);
 });
 
-chrome.browserAction.onClicked.addListener((tab) => {
+chrome.action.onClicked.addListener( _ => {
   chrome.runtime.openOptionsPage();
 });
+
+// chrome.browserAction.onClicked.addListener((tab) => {
+//   chrome.runtime.openOptionsPage();
+// });
 
 chrome.commands.onCommand.addListener((cmd) => {
   if (cmd === 'toggle-mode') {
