@@ -4,6 +4,13 @@
 네이버사전이 변경되어 khris님의 Naver English Dictionary (Unofficial) 확장을 개선했습니다.  
 https://github.com/khris/naver-endic-unofficial.git
 
+## Firefox 확장
+manifest 2버전을 사용하며 firefox의 extention api를 사용합니다. firefox branch를 참고하세요.
+
+## Chrome 확장
+manifest 3버전을 사용하며 chrome의 extention api를 사용합니다.
+chrome branch를 참고하세요.
+
 ## Licence
 Mozilla Public License 2.0. See `LICENSE.md`.
 
