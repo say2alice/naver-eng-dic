@@ -22,9 +22,7 @@ function setFormElementValue(elem, value) {
 
 /* global defaultPrefs */
 function restoreOptions() {
-  browser.storage.local.get({
-    prefs: defaultPrefs
-  }).then((results) => {
+  chrome.storage.local.get({prefs: defaultPrefs}, results => {
     const { prefs } = results;
     applyToFormElements((elem) => {
       setFormElementValue(elem, prefs[elem.name]);
@@ -37,9 +35,7 @@ function saveOptions() {
   applyToFormElements((elem) => {
     newPrefs[elem.name] = getFormElementValue(elem);
   });
-  browser.storage.local.set({
-    prefs: newPrefs
-  });
+  chrome.storage.local.set({prefs: newPrefs});
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);

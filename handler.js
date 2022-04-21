@@ -4,12 +4,12 @@ let prefs = null;
 let ignoreMouseEvent = false;
 
 /* global defaultPrefs */
-browser.storage.local.get('prefs', (rawItem) => {
+chrome.storage.local.get('prefs', (rawItem) => {
   const item = Array.isArray(rawItem) ? rawItem[0] : rawItem;
   prefs = item.prefs ? item.prefs : defaultPrefs;
 });
 
-browser.storage.onChanged.addListener((changes /*, area */) => {
+chrome.storage.onChanged.addListener((changes /*, area */) => {
   prefs = changes.prefs.newValue;
 });
 
@@ -136,7 +136,7 @@ function showTooltip(text, pos) {
   const tooltip = document.createElement('div');
   tooltip.id = TOOLTIP_ID;
 
-  const dictUrl = browser.runtime.getURL('dict.html') + `?text=${text}`;
+  const dictUrl = chrome.runtime.getURL('dict.html') + `?text=${text}`;
 
   const dictFrame =  document.createElement('iframe');
   dictFrame.style.setProperty('border', '0');

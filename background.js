@@ -1,3 +1,10 @@
+const defaultPrefs = {
+  wordSelectMode: 0,
+  useCtrl: false,
+  useAlt: true,
+  useMeta: false
+}
+
 const modeIcons = [
   'icons/icon@64.png'
 ];
@@ -7,48 +14,43 @@ const modeName = [
 ];
 
 function initBrowserAction(wordSelectMode) {
-  browser.browserAction.setIcon({
+  chrome.browserAction.setIcon({
     path: modeIcons[wordSelectMode]
   });
-  browser.browserAction.setTitle({
+  chrome.browserAction.setTitle({
     title: `English Korean Dictionary\n${modeName[wordSelectMode]}`
   });
 }
 
 /* global defaultPrefs */
-browser.storage.local.get({
-  prefs: defaultPrefs
-}).then((results) => {
+chrome.storage.local.get({prefs: defaultPrefs}, results => {
   const { prefs } = results;
   initBrowserAction(prefs.wordSelectMode);
 });
 
-browser.storage.onChanged.addListener((changes, area) => {
+chrome.storage.onChanged.addListener((changes, area) => {
   const wordSelectMode = changes.prefs.newValue.wordSelectMode;
   initBrowserAction(wordSelectMode);
 });
 
-browser.browserAction.onClicked.addListener((tab) => {
-  browser.runtime.openOptionsPage();
+chrome.browserAction.onClicked.addListener((tab) => {
+  chrome.runtime.openOptionsPage();
 });
 
-browser.commands.onCommand.addListener((cmd) => {
+chrome.commands.onCommand.addListener((cmd) => {
   if (cmd === 'toggle-mode') {
-    browser.storage.local.get({
-      prefs: defaultPrefs
-    }).then((results) => {
+    chrome.storage.local.get({prefs: defaultPrefs}, results => {
       const { prefs } = results;
       prefs['wordSelectMode'] = prefs['wordSelectMode'] === 0 ? 1 : 0;
-      browser.storage.local.set({
-        prefs: prefs
-      });
+      chrome.storage.local.set({prefs: prefs});
     });
+
   }
 });
 
-browser.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install' || details.reason === 'update') {
-    // browser.tabs.create({
+    // chrome.tabs.create({
     //   url: 'https://bitbucket.org/jb-tutorial/naver-eng-dic'
     // })
   }
