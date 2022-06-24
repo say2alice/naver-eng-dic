@@ -30,7 +30,7 @@ async function getWordMeaning(word) {
   
   const init = {
     headers: {
-      'User-Agent': `${window.navigator.userAgent} NotAndroid`,
+      'User-Agent': `${window.navigator.userAgent} NotAndroid`
     },
   }
 

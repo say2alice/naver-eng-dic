@@ -52,10 +52,42 @@ chrome.commands.onCommand.addListener((cmd) => {
   }
 });
 
-chrome.runtime.onInstalled.addListener((details) => {
+chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === 'install' || details.reason === 'update') {
     // chrome.tabs.create({
     //   url: 'https://bitbucket.org/jb-tutorial/naver-eng-dic'
     // })
   }
 });
+
+chrome.declarativeNetRequest.getDynamicRules(rules => {
+  var ruleIdx = 0;
+  var existingRules = [];
+  for (var i=0;i<rules.length;i++) {
+      ruleIdx = rules[i].id;
+      existingRules.push(rules[i].id);
+  }
+  ruleIdx++;
+  chrome.declarativeNetRequest.updateDynamicRules({
+    addRules: [
+      {
+        action: {
+            type: 'modifyHeaders',
+            requestHeaders: [{'header': 'Referer', 'operation': 'set', 'value': 'https://en.dict.naver.com/'}]
+        },
+        condition: {
+          'urlFilter': '*',
+          'resourceTypes': ['xmlhttprequest']
+        },
+        id: ruleIdx,
+        priority: 1
+      },
+  ],
+  removeRuleIds: existingRules
+})
+})
+
+// chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(function (o) {
+//   console.log('rule matched:', o);
+// });
+
