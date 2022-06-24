@@ -53,3 +53,11 @@ browser.runtime.onInstalled.addListener((details) => {
     // })
   }
 });
+
+browser.webRequest.onBeforeSendHeaders.addListener(details => {
+  details.requestHeaders.push({name: 'Referer', value:'https://en.dict.naver.com/'});
+  return {requestHeaders: details.requestHeaders};
+  },
+  {urls: ['<all_urls>']},
+  ["blocking", "requestHeaders"]
+);

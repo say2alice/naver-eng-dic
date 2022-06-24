@@ -7,6 +7,9 @@ https://github.com/khris/naver-endic-unofficial.git
 ## Licence
 Mozilla Public License 2.0. See `LICENSE.md`.
 
+## 버전히스토리
+- 1.0.4 단어 가져오기 기능 개선
+
 `icons/speech.png` is from [Google Material Design Icons][0].
 
 [0]: https://github.com/google/material-design-icons/

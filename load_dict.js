@@ -25,12 +25,15 @@ getWordMeaning(q['text']).then( result => {
 });
 
 async function getWordMeaning(word) {
-  const dictUrl = `https://en.dict.naver.com/api3/enko/search?m=mobile&range=wordpage=1&lang=ko&query=${word}`
-  const dictPageUrl = `https://en.dict.naver.com/#/search?range=all&query=${word}`
+  const dicUrl = 'https://en.dict.naver.com'
+
+  const dictUrl = `${dicUrl}/api3/enko/search?m=mobile&range=wordpage=1&lang=ko&query=${word}`
+  const dictPageUrl = `${dicUrl}/#/search?range=all&query=${word}`
   
   const init = {
     headers: {
       'User-Agent': `${window.navigator.userAgent} NotAndroid`,
+      'Accept': 'application/json'
     },
   }
 

@@ -1,4 +1,4 @@
-const TOOLTIP_ID = '_ext_tooltip_34F75D';
+const TOOLTIP_ID = '_ext_tooltip_34F73F';
 
 let prefs = null;
 let ignoreMouseEvent = false;
